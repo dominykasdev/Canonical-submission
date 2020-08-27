@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Post from './components/post';
+import fetchApi from './api/fetchApi';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { posts: [] };
+  }
+
+  async componentDidMount() {
+    const response = await fetchApi;
+    const json = await response.json();
+    this.setState({ posts: json });
+  }
+
+  renderPosts(posts) {
+    return posts.map(post => {
+      return (
+        <Post key={post.id} props={post} />
+      );
+    })
+  }
+
+  render() {
+    const posts = this.state.posts;
+    if (posts.length) {
+      return (
+        <div className="App">
+          {this.renderPosts(posts)}
+        </div>
+      );
+    } else {
+      return <div>Loading...</div>
+    }
+
+  }
 }
 
 export default App;

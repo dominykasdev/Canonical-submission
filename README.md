@@ -1,4 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Canonical submission
+
+This is a React js project that renders three WordPress posts linking to their respective pages on the Ubuntu blog. The posts are built on data taken from an external JSON api source.
+The project is stylised using the Vanilla SCSS framework.
+
+## Notes
+
+Last post appears to no longer link to an existing page. The post still renders to satisfy the requirements, however ideally it should not be rendered if it doesn't link to a working page.
+
+The posts are fully responsive.
 
 ## Available Scripts
 
